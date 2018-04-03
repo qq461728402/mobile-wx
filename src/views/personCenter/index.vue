@@ -1,21 +1,23 @@
 <template>
   <div>
-    <p>电话本</p>
+    <p>个人中心</p>
   </div>
 </template>
 <script>
  import API from '@/api'
 export default {
-  name: 'phoneBook',
+  name: 'personCenter',
   data () {
     return {
 
     }
   },
+  activated(){
+
+  },
   mounted(){
   },
   methods:{
-
   },
 }
 </script>

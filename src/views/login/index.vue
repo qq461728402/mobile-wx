@@ -46,7 +46,7 @@
             if(response.statusCode == 0){
                 var userInfo =response.message.user[0];
                setStore('userInfo',userInfo);
-              this.$router.push({path: '/'});
+              _this.$router.push({path: '/'});
             }else{
               _this.$dialog.toast({mes: response.message, timeout: 1000});
             }

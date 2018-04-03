@@ -1,41 +1,28 @@
 <template>
-  <yd-layout id="homepage">
-    <yd-navbar slot="navbar" title="首页">
-      <router-link to="#" slot="left">
-        <yd-navbar-back-icon></yd-navbar-back-icon>
-      </router-link>
-    </yd-navbar>
+  <div id="homepage">
     <yd-grids-group  :rows="4" :title="key" v-for="(items,key) in list" :key="key">
-      <yd-grids-item v-for="(item,index) in items" :key="index" @click.native="gotoModule(item)">
+      <yd-grids-item v-for="(item,index) in items" :key="index" @click.native="gotoModule(item)" id="itemd">
         <yd-badge type="danger" slot="else" class="badge" v-if="item.count>0">{{item.count}}</yd-badge>
-        <img slot="icon" :src="item.img | picture12" style="height: 100%;">
+        <img slot="icon" v-lazy="item.img" style="height: 100%;">
         <span slot="text" style="font-size: 0.25rem">{{item.name}}</span>
       </yd-grids-item>
     </yd-grids-group>
-    <yd-tabbar slot="tabbar"  active-color="#00a7ff">
-      <yd-tabbar-item title="首页" link="#" active>
-        <yd-icon name="home" slot="icon" size=".5rem"></yd-icon>
-      </yd-tabbar-item>
-      <yd-tabbar-item title="电话本" link="#" >
-        <yd-icon name="dianhuaben" custom slot="icon" size=".5rem"></yd-icon>
-      </yd-tabbar-item>
-      <yd-tabbar-item title="个人中心"  link="#">
-        <yd-icon name="ucenter-outline" slot="icon" size=".5rem"></yd-icon>
-      </yd-tabbar-item>
-    </yd-tabbar>
-  </yd-layout>
+  </div>
 </template>
 <script>
   import API from '@/api'
   import {setStore} from '@/utils/storeUtils'
+  import {dealimg} from '@/utils/dealImg'
   export default {
-    name: 'HelloWorld',
+    name: 'homePage',
     data () {
       return {
           list:{},
       }
     },
     mounted(){
+    },
+    activated(){
       this.getMenuType();
     },
     methods: {
@@ -47,6 +34,9 @@
             var homeModel=[];
             var officeModel=[];
             childtypelst.forEach(function (item) {
+              if (item.img){
+                item.img=dealimg(item.img);
+              }
               if(item.alias.indexOf('news')>=0||item.alias.indexOf('emsg')>=0||item.alias.indexOf('Message')>=0){
                 //校内动态
                 shoolModel.push(item);
@@ -79,6 +69,11 @@
     right: 6%;
     top: 10%;
   }
+  #itemd img[lazy=error] {
+    background: url(~@/assets/img/logo.png);
+    background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;
+  }
+
 </style>
 <style>
   #homepage .yd-grids-txt{

@@ -3,7 +3,6 @@ import requestUrl from '../requestUrl'
 import requestParam from '../requestParam'
 import {enpar} from '@/utils/defaultParameter'
 import merge from 'lodash/merge'
-import Vue from 'vue'
 // 获取单位信息
 export function getUnitInfo (params,key,isDES=false,noWxurl = true) {
   if (isDES==true){

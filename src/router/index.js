@@ -7,8 +7,13 @@ export default new Router({
   mode: 'hash',
   routes: [
     {path: "*", redirect: '/home'},
-    {path:'/home',name:'home',component:_import('homePage/index'),meta:{keepAlive:false,title:'首页'},
-    beforeEnter(to,from,next){
+    {path:'/index',name:'index',component:_import('layOut/index'),meta:{keepAlive:true,title:'掌上数字校园'},
+      children:[
+        {path:'/home',name:'home',component:_import('homePage/index'),meta:{keepAlive:true,title:'首页'}},
+        {path:'/phonebook',name:'phonebook',component:_import('phoneBook/index'),meta:{keepAlive:true,title:'电话本'}},
+        {path:'/personcenter',name:'personcenter',component:_import('personCenter/index'),meta:{keepAlive:true,title:'个人中心'}},
+      ],
+      beforeEnter(to,from,next){
         if(getStore('userInfo')){
           if(to)next();
         }else{
