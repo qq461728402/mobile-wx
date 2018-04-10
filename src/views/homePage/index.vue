@@ -55,7 +55,10 @@
       gotoModule(item){
           var alias=item.alias;
           if(alias.indexOf('news')>-1||alias.indexOf('emsg')>-1||alias.indexOf('Message')>-1||alias.indexOf('book')>-1||alias.indexOf('home')>-1){
-
+              if (item.childcount==0){//没有分类
+                  this.$router.push({path:'/news',query:{title:item.name,alias:item.alias,menuid:item.menuid}});
+              }else{//有分类
+              }
           }else if(alias.indexOf('http://')>-1||alias.indexOf('https://')>-1){
             this.$router.push({path: '/iframe',query:{url:alias}});
           }

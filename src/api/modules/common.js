@@ -69,7 +69,7 @@ export  function getMenuType(_this,params,msg,callback,key,isDES=false,noWxurl =
         callback(respones);
       }
     }else{
-      this.$dialog.toast({
+      _this.$dialog.toast({
         mes: respones.message,
         timeout: 1500
       });

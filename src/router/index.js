@@ -15,7 +15,7 @@ export default new Router({
       ],
       beforeEnter(to,from,next){
         if(getStore('userInfo')){
-          if(to)next();
+          next();
         }else{
           next({ name: 'login' });
         }
@@ -23,5 +23,6 @@ export default new Router({
     },
     { path: '/login', component: _import('login/index'), name: 'login', meta: {title:'登录',keepAlive:false} },
     { path: '/iframe', component: _import('iframe/index'), name: 'iframe', meta: {title:'消息',keepAlive:false}},
+    { path: '/news', component: _import('news/index'), name: 'news', meta: {keepAlive:false}},
   ]
 })
