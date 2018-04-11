@@ -21,5 +21,6 @@ export default {
 #app .yd-navbar{
   display: none;
 }
-
+.side-bar {width: 30px;position: fixed;bottom: 20px;right: 25px;font-size: 0;line-height: 0;z-index: 100;}
+.side-bar a {width: 30px;height: 30px;display: inline-block;margin-bottom: 2px;background:url(~@/assets/img/add.png) no-repeat center ;}
 </style>

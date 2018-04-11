@@ -24,5 +24,7 @@ export default new Router({
     { path: '/login', component: _import('login/index'), name: 'login', meta: {title:'登录',keepAlive:false} },
     { path: '/iframe', component: _import('iframe/index'), name: 'iframe', meta: {title:'消息',keepAlive:false}},
     { path: '/news', component: _import('news/index'), name: 'news', meta: {keepAlive:false}},
+    { path: '/newsTab',component: _import('newsTab/index'), name: 'newsTab', meta: {keepAlive:false}},
+    { path: '/publicNews',component: _import('news/publicNews'), name: 'publicNews', meta: {keepAlive:false}}
   ]
 })

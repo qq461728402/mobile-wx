@@ -21,14 +21,15 @@
       }
     },
     mounted(){
+      this.getMenuType(true);
     },
     activated(){
-      this.getMenuType();
+//      this.getMenuType();
     },
     methods: {
-      getMenuType(){
+      getMenuType(isrefresh){
           const _this=this;
-          API.common.getMenuType(this,{},'加载中...',function (respones) {
+          API.common.getMenuType(this,{},isrefresh?'加载中...':'',function (respones) {
             var childtypelst=respones.message.childtypelst;
             var shoolModel=[];
             var homeModel=[];
@@ -58,9 +59,10 @@
               if (item.childcount==0){//没有分类
                   this.$router.push({path:'/news',query:{title:item.name,alias:item.alias,menuid:item.menuid}});
               }else{//有分类
+                this.$router.push({path:'/newsTab',query:{title:item.name,alias:item.alias,menuid:item.menuid}});
               }
           }else if(alias.indexOf('http://')>-1||alias.indexOf('https://')>-1){
-            this.$router.push({path: '/iframe',query:{url:alias}});
+            this.$router.push({path: '/iframe',query:{'url':alias,'title':item.name}});
           }
       },
     },

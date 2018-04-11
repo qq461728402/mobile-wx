@@ -4,7 +4,7 @@ import requestParam from '../requestParam'
 import {enpar} from '@/utils/defaultParameter'
 import merge from 'lodash/merge'
 
-//首页模块接口
+//获取信息列表
 export  function getNewsList(_this,params,msg,callback,key,isDES=false,noWxurl = true){
    if(msg){
      _this.$dialog.loading.open(msg);
@@ -38,11 +38,137 @@ export  function getNewsList(_this,params,msg,callback,key,isDES=false,noWxurl =
     }
   })
 }
-// 退出
-export function logout () {
+
+//获取信息列表
+export  function getNewsTypeTree(_this,params,msg,callback,key,isDES=false,noWxurl = true){
+  if(msg){
+    _this.$dialog.loading.open(msg);
+  }
+  if (isDES==true){
+    if (typeof key ==='string'){
+      params[key] =enpar(params[key]);
+    }else{
+      key.forEach(function (itemkey) {
+        params[itemkey] =enpar(params[itemkey]);
+      })
+    }
+  }
+  var  service={'service':'newsMobileBP.getNewsTypeTree'};
   return request({
-    url: requestUrl('/sys/logout'),
+    url: requestUrl(noWxurl?'action/InvokeActionPhoneContact':'mobile/service/jsonProvider'),
     method: 'post',
-    data: requestParam()
+    params:requestParam(merge(service,params))
+  }).then(function (respones) {
+    console.log(respones);
+    if (respones.statusCode==0){
+      if (callback){
+        _this.$dialog.loading.close();
+        callback(respones);
+      }
+    }else{
+      _this.$dialog.toast({
+        mes: respones.message,
+        timeout: 1500
+      });
+    }
+  })
+}
+
+//调取读书档案
+export  function getMyBookStatList(_this,params,msg,callback,key,isDES=false,noWxurl = true){
+  if(msg){
+    _this.$dialog.loading.open(msg);
+  }
+  if (isDES==true){
+    if (typeof key ==='string'){
+      params[key] =enpar(params[key]);
+    }else{
+      key.forEach(function (itemkey) {
+        params[itemkey] =enpar(params[itemkey]);
+      })
+    }
+  }
+  var  service={'method':'getMyBookStatList'};
+  return request({
+    url: requestUrl(noWxurl?'action/InvokeActionPhoneContact':'mobile/service/jsonProvider'),
+    method: 'post',
+    params:requestParam(merge(service,params))
+  }).then(function (respones) {
+    console.log(respones);
+    if (respones.statusCode==200){
+      if (callback){
+        _this.$dialog.loading.close();
+        callback(respones);
+      }
+    }else{
+      _this.$dialog.toast({
+        mes: respones.message,
+        timeout: 1500
+      });
+    }
+  })
+}
+//读书统计
+export  function getMyBookStat(_this,params,msg,callback,key,isDES=false,noWxurl = true){
+  if(msg){
+    _this.$dialog.loading.open(msg);
+  }
+  if (isDES==true){
+    if (typeof key ==='string'){
+      params[key] =enpar(params[key]);
+    }else{
+      key.forEach(function (itemkey) {
+        params[itemkey] =enpar(params[itemkey]);
+      })
+    }
+  }
+  var  service={'method':'getMyBookStat'};
+  return request({
+    url: requestUrl(noWxurl?'action/InvokeActionPhoneContact':'mobile/service/jsonProvider'),
+    method: 'post',
+    params:requestParam(merge(service,params))
+  }).then(function (respones) {
+    console.log(respones);
+    if (respones.statusCode==0){
+      if (callback){
+        callback(respones);
+      }
+    }else{
+      _this.$dialog.toast({
+        mes: respones.message,
+        timeout: 1500
+      });
+    }
+  })
+}
+
+//是否具有发布权限
+export  function getPublishPopedom(_this,params,callback,key,isDES=false,noWxurl = true){
+  if (isDES==true){
+    if (typeof key ==='string'){
+      params[key] =enpar(params[key]);
+    }else{
+      key.forEach(function (itemkey) {
+        params[itemkey] =enpar(params[itemkey]);
+      })
+    }
+  }
+  var  service={'service':'UserMobileBP.getPublishPopedom'};
+  return request({
+    url: requestUrl(noWxurl?'action/InvokeActionPhoneContact':'mobile/service/jsonProvider'),
+    method: 'post',
+    params:requestParam(merge(service,params))
+  }).then(function (respones) {
+    console.log(respones);
+    if (respones.statusCode==0){
+      if (callback){
+        callback(respones);
+      }
+    }else{
+      _this.$dialog.toast({
+        mes: respones.message,
+        timeout: 1500
+      });
+    }
   })
 }
