@@ -34,7 +34,7 @@ export function defaultPar() {
   }
   if(getStore('userInfo')!=undefined&&getStore('userInfo').length>0){
     var userInfo=JSON.parse(getStore('userInfo'));
-    userInfoDic={'userid':enpar(userInfo.user_id),'deptid':userInfo.dept_id,'deptname':userInfo.dept_name,'username':userInfo.user_name,'usertype':userInfo.user_type,'loginname':userInfo.user_loginname,'setsession':'1','uid':userInfo.user_id,'schoolid':userInfo.unit_id,'userloginname':userInfo.user_loginname};//用户登录名
+    userInfoDic={'userid':enpar(userInfo.user_id),'deptid':userInfo.dept_id,'deptname':userInfo.dept_name,'username':userInfo.user_name,'usertype':userInfo.user_type,'loginname':userInfo.user_loginname,'setsession':'1','uid':userInfo.user_id,'schoolid':userInfo.unit_id,'userloginname':userInfo.user_loginname,'user_pwd':userInfo.user_pwd};//用户登录名
     if (userInfo.user_type!=0){
       var currentdic={'currentyear':userInfo.currentyear,'currentsemester':userInfo.currentsemester};
       userInfoDic =merge(userInfoDic,currentdic);

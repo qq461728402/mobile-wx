@@ -47,7 +47,7 @@ export default {
   },
   methods:{
     add(){
-      this.$router.push({path: '/publicNews',query:{'title':'发布'+this.title}});
+      this.$router.push({path: '/publicNews',query:{'title':'发布'+this.title,'alias':this.alias,'popedomflg':this.popedomflg,'role':this.role,'moduleid':this.menuid}});
     },
     loadList(){
         this.pageNow=1;
@@ -84,7 +84,7 @@ export default {
           if (respones.message&&respones.message.newslst){
             respones.message.newslst.forEach(function (item) {
               if (item.first_imgsmall){
-                item.img=dealimg(item.first_imgsmall);
+                item.first_imgsmall=dealimg(item.first_imgsmall);
               }
             });
             if (_this.pageNow==1){

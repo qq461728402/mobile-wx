@@ -39,12 +39,15 @@
           this.$dialog.toast({mes: '请输入密码', timeout: 1000});
           return;
         }
+        var pass=this.loginInfo.password;
         this.$dialog.loading.open('登录中...');
         const _this =this;
         API.common.login(this.loginInfo, 'password', true).then(function (response) {
             _this.$dialog.loading.close();
             if(response.statusCode == 0){
                 var userInfo =response.message.user[0];
+              userInfo.userloginname=_this.loginInfo.loginname;
+              userInfo.user_pwd=pass;
                setStore('userInfo',userInfo);
               _this.$router.push({path: '/'});
             }else{

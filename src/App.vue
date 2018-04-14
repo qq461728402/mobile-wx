@@ -1,14 +1,19 @@
 <template>
   <div id="app">
     <keep-alive>
-      <router-view v-if="$route.meta.keepAlive" v-wechat-title="$route.meta.title"></router-view>
+      <router-view v-if="$route.meta.keepAlive" v-wechat-title="$route.meta.title" :img-set="imgUrl"></router-view>
     </keep-alive>
-    <router-view v-if="!$route.meta.keepAlive" v-wechat-title="$route.meta.title"></router-view>
+    <router-view v-if="!$route.meta.keepAlive" v-wechat-title="$route.meta.title" :img-set="imgUrl"></router-view>
   </div>
 </template>
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data () {
+    return {
+      imgUrl:require('../static/logo.png'),
+    }
+  },
 }
 </script>
 
