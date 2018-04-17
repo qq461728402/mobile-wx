@@ -63,6 +63,8 @@
               }
           }else if(alias.indexOf('http://')>-1||alias.indexOf('https://')>-1){
             this.$router.push({path: '/iframe',query:{'url':alias,'title':item.name}});
+          }else if(alias=='Repaire'){//报修管理模块
+            this.$router.push({path:'/repaire',query:{title:item.name,alias:item.alias,classid:item.ywid}});
           }
       },
     },
