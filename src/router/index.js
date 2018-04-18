@@ -27,5 +27,6 @@ export default new Router({
     { path: '/newsTab',component: _import('newsTab/index'), name: 'newsTab', meta: {title:'消息',keepAlive:false}},
     { path: '/publicNews',component: _import('news/publicNews'), name: 'publicNews', meta: {keepAlive:false}},
     { path: '/repaire',component: _import('repaire/index'), name: 'repaire', meta: {title:'报修管理',keepAlive:false}},
+    { path: '/detailRepaire',component: _import('repaire/detailRepaire'), name: 'detailRepaire', meta: {title:'报修详情',keepAlive:false}},
   ]
 })

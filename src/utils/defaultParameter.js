@@ -45,3 +45,24 @@ export function defaultPar() {
   var tempdic=merge(unitInfoDic,userInfoDic);
   return tempdic
 }
+
+//获取默认参数
+export function wxdefaultPar() {
+  var  unitInfoDic={};
+  var  userInfoDic={};
+  if(getStore('unitInfo')!=undefined&&getStore('unitInfo').length>0){
+    var unitInfo = JSON.parse(getStore('unitInfo'));
+    unitInfoDic={'unitid':enpar(unitInfo.unit_id),'unitname':unitInfo.unit_name};
+  }
+  if(getStore('userInfo')!=undefined&&getStore('userInfo').length>0){
+    var userInfo=JSON.parse(getStore('userInfo'));
+    userInfoDic={'userid':enpar(userInfo.user_id),'deptid':userInfo.dept_id,'deptname':userInfo.dept_name,'username':userInfo.user_name,'usertype':userInfo.user_type,'loginname':userInfo.user_loginname};//用户登录名
+    if (userInfo.user_type!=0){
+      var currentdic={'currentyear':userInfo.currentyear,'currentsemester':userInfo.currentsemester};
+      userInfoDic =merge(userInfoDic,currentdic);
+    }
+  }
+  var tempdic=merge(unitInfoDic,userInfoDic);
+  return tempdic
+}
+

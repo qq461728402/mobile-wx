@@ -10,6 +10,9 @@
         <span slot="doneTip">我是有底线的</span>
       </yd-infinitescroll>
     </yd-pullrefresh>
+    <div class="side-bar">
+      <a @click="add()"></a>
+    </div>
   </yd-layout>
 </template>
 <script type="text/ecmascript-6">
@@ -47,6 +50,7 @@ export default {
     },
     itemClick(key){
       this.tab2 = key;
+      this.pageNow=1;
       var itemTab=this.repaireclasslst[this.tab2];
       this.getRepaireList(itemTab,true);
     },
@@ -82,9 +86,14 @@ export default {
         }
       })
     },
+    //获取详情
     gotoDetail(item){
-     console.log(item);
-    }
+      this.$router.push({name: 'detailRepaire',params:item});
+    },
+    //新增
+    add(){
+
+    },
   },
 }
 </script>
